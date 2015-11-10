@@ -721,12 +721,6 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
                     handleNullReturnEvent(msg, "setNetworkSelectionModeManual");
                     break;
 
-                case CMD_GET_MODEM_ACTIVITY_INFO:
-                    request = (MainThreadRequest) msg.obj;
-                    onCompleted = obtainMessage(EVENT_GET_MODEM_ACTIVITY_INFO_DONE, request);
-                    mPhone.getModemActivityInfo(onCompleted);
-                    break;
-
                 case EVENT_GET_MODEM_ACTIVITY_INFO_DONE:
                     ar = (AsyncResult) msg.obj;
                     request = (MainThreadRequest) ar.userObj;
@@ -2872,12 +2866,4 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
     }
 
-    /**
-     * {@hide}
-     * Returns the modem stats
-     */
-    @Override
-    public ModemActivityInfo getModemActivityInfo() {
-        return (ModemActivityInfo) sendRequest(CMD_GET_MODEM_ACTIVITY_INFO, null);
-    }
 }
